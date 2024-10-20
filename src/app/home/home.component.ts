@@ -22,12 +22,11 @@ export class HomeComponent {
       link: '/calendar'
     },
     {
-      icon: 'favorite',
-      title: 'Mensagens do Coração',
-      description: 'Crie e compartilhe mensagens românticas para ocasiões únicas.',
+      icon: 'chat',
+      title: 'Gerador de Mensagens',
+      description: 'Use nossa IA para criar mensagens românticas personalizadas.',
       link: '/messages'
-    },
+    }
     // Adicione mais funcionalidades conforme necessário
   ];
 }
-

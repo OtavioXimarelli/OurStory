@@ -1,1 +1,50 @@
-<p>message-generator works!</p>
+<div class="message-generator-container">
+  <h2 class="title">Mensagens Personalizadas <mat-icon>favorite</mat-icon></h2>
+  <p class="subtitle">Crie e gerencie suas mensagens especiais para cada ocasião.</p>
+
+  <div class="input-section">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome do parceiro</mat-label>
+      <input matInput [(ngModel)]="partnerName" required placeholder="Digite o nome do seu parceiro">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Data (em desenvolvimento)</mat-label>
+      <input matInput disabled placeholder="Funcionalidade em desenvolvimento">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Informações adicionais para a IA (opcional)</mat-label>
+      <textarea matInput [(ngModel)]="additionalInfo" placeholder="Adicione informações para personalizar a mensagem"></textarea>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="handleGenerateMessage()" [disabled]="loading">
+        {{ loading ? 'Gerando...' : 'Gerar Mensagem' }}
+      </button>
+      <button mat-raised-button color="warn" (click)="handleClearMessages()">
+        <mat-icon>delete</mat-icon> Limpar Mensagens
+      </button>
+    </div>
+  </div>
+
+  <div class="generated-message-container" *ngIf="generatedMessages.length > 0">
+    <h3>Mensagem Gerada:</h3>
+    <mat-card>
+      <mat-card-content>
+        <p>{{ generatedMessages[0].text }}</p>
+        <small>{{ generatedMessages[0].date }}</small>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="message-history" *ngIf="generatedMessages.length > 1">
+    <h3>Últimas Mensagens Geradas:</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let msg of generatedMessages.slice(1)">
+        <p>{{ msg.text }}</p>
+        <small>{{ msg.date }}</small>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
