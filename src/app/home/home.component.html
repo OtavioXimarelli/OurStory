@@ -1,0 +1,37 @@
+  <!-- src/app/home/home.component.html -->
+<div class="home-container">
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="title">Our Love Story</h1>
+      <p class="subtitle">Celebre o amor e preserve memórias especiais juntos</p>
+      <a routerLink="/register" class="cta-button">Comece Sua História</a>
+    </div>
+    <div class="hero-image">
+      <img src="assets/hero-image.jpg" alt="Our Love Story" class="responsive-img">
+    </div>
+  </section>
+
+  <section class="features-section">
+    <h2 class="section-title">Funcionalidades</h2>
+    <div class="features-container">
+      <mat-card class="feature-card" *ngFor="let feature of features">
+        <mat-icon class="feature-icon">{{ feature.icon }}</mat-icon>
+        <h3 class="feature-title">{{ feature.title }}</h3>
+        <p class="feature-description">{{ feature.description }}</p>
+        <a [routerLink]="feature.link" class="feature-link">Saiba mais</a>
+      </mat-card>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <div class="about-content">
+      <h2 class="section-title">Sobre o Projeto</h2>
+      <p class="about-description">
+        Our Love Story foi criado para ajudar casais a celebrar seu amor e manter viva a chama do romance.
+        Com funcionalidades únicas, proporcionamos uma experiência significativa para cada casal,
+        permitindo que criem e preservem memórias especiais juntos.
+      </p>
+      <a routerLink="/about" class="learn-more-button">Conheça mais</a>
+    </div>
+  </section>
+</div>

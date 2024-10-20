@@ -1,0 +1,146 @@
+// src/app/header/header.component.scss
+@import '../../styles/variables';
+
+.header-container {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+
+    .hearts-container {
+      margin-right: 10px;
+    }
+  }
+
+  .nav-links-container {
+    display: flex;
+    gap: 15px;
+
+    .nav-item, .btn {
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: $primary-color;
+      border: 1px solid $primary-color;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $primary-color;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .btn-login {
+      background-color: $primary-color;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}
+
+.logo h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  margin: 0;
+  color: #ff1493;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-item, .btn {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  border: 1px solid #ff69b4;
+}
+
+.btn-login {
+  background-color: #ff69b4;
+  color: #ffffff;
+  border: none;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login:hover {
+  background-color: #ff1493;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-item:hover, .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-left, .nav-right {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .btn-login {
+    width: 100%;
+  }
+}
+
+.hearts-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+
+

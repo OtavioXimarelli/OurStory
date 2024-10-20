@@ -1,0 +1,14 @@
+<header class="header-container">
+  <div class="logo">
+    <span class="hearts-container">❤️</span>
+    Our Love Story
+  </div>
+  <nav class="nav-links-container">
+    <a routerLink="/" class="nav-item">Home</a>
+    <a routerLink="/calendar" class="nav-item">Calendário</a>
+    <a routerLink="/messages" class="nav-item">Mensagens</a>
+    <button class="btn btn-login" (click)="toggleAuth()">
+      {{ isAuthenticated ? 'Logout' : 'Login' }}
+    </button>
+  </nav>
+</header>
