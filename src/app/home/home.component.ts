@@ -5,15 +5,19 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DevelopmentModalComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, RouterModule, MatCardModule, MatIconModule, MatButtonModule, MatDialogModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  constructor(private dialog: MatDialog) {}
+
   features = [
     {
       icon: 'calendar_today',
@@ -22,12 +26,17 @@ export class HomeComponent {
       link: '/calendar'
     },
     {
-      icon: 'favorite',
-      title: 'Mensagens do Coração',
-      description: 'Crie e compartilhe mensagens românticas para ocasiões únicas.',
+      icon: 'chat',
+      title: 'Gerador de Mensagens',
+      description: 'Use nossa IA para criar mensagens românticas personalizadas.',
       link: '/messages'
-    },
-    // Adicione mais funcionalidades conforme necessário
+    }
   ];
-}
 
+  openDevelopmentModal() {
+    this.dialog.open(DevelopmentModalComponent, {
+      width: '400px',
+      panelClass: 'custom-dialog-container'
+    });
+  }
+}
