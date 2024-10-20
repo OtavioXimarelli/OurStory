@@ -40,3 +40,47 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Angular environment files
+/src/environments/*.ts
+!/src/environments/environment.ts
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# Cordova
+/www
+/plugins
+/platforms
+
+# Electron
+/electron/dist
+/electron/node_modules
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
