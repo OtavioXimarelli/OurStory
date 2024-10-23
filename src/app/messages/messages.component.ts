@@ -75,8 +75,8 @@ export class MessagesComponent implements OnInit {
   }
 
   async handleGenerateMessage() {
-    if (!this.partnerName || !this.messageCategory) {
-      this.snackBar.open('Por favor, preencha todos os campos obrigatórios.', 'Fechar', { duration: 3000 });
+    if (!this.partnerName) {
+      this.snackBar.open('Por favor, preencha o nome do parceiro.', 'Fechar', { duration: 3000 });
       return;
     }
     this.loading = true;
