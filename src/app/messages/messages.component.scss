@@ -1,0 +1,110 @@
+@import '../../styles/variables';
+
+.messages-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.messages-title {
+  font-size: 2.5rem;
+  color: $secondary-color;
+  text-align: center;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    margin-left: 0.5rem;
+    color: $primary-color;
+  }
+}
+
+.messages-subtitle {
+  font-size: 1.2rem;
+  color: $text-color;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  button {
+    flex: 1;
+  }
+}
+
+.generated-message-container, .message-history {
+  margin-top: 3rem;
+}
+
+.generated-message-title, .history-title {
+  font-size: 1.8rem;
+  color: $secondary-color;
+  margin-bottom: 1rem;
+}
+
+.message-card {
+  background-color: #f9f9f9;
+  border-left: 4px solid $primary-color;
+
+  p {
+    font-size: 1.1rem;
+    color: $text-color;
+    margin-bottom: 0.5rem;
+  }
+
+  small {
+    color: $text-color;
+    opacity: 0.7;
+  }
+}
+
+mat-list-item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+
+  p {
+    font-size: 1rem;
+    color: $text-color;
+    margin-bottom: 0.3rem;
+  }
+
+  small {
+    color: $text-color;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 768px) {
+  .messages-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .messages-title {
+    font-size: 2rem;
+  }
+
+  .messages-subtitle {
+    font-size: 1rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+}
+

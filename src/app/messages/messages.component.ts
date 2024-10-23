@@ -1,24 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 
+interface GeneratedMessage {
+  text: string;
+  date: string;
+}
+
 @Component({
-  selector: 'app-message-generator',
+  selector: 'app-messages',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatInputModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatCardModule, MatListModule],
-  templateUrl: './message-generator.component.html',
-  styleUrls: ['./message-generator.component.scss']
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatListModule
+  ],
+  templateUrl: './messages.component.html',
+  styleUrls: ['./messages.component.scss']
 })
-export class MessageGeneratorComponent implements OnInit {
+export class MessagesComponent implements OnInit {
   partnerName: string = '';
   additionalInfo: string = '';
-  generatedMessages: { text: string, date: string }[] = [];
+  generatedMessages: GeneratedMessage[] = [];
   loading: boolean = false;
 
   constructor(private snackBar: MatSnackBar) {}
@@ -41,7 +55,7 @@ export class MessageGeneratorComponent implements OnInit {
       const timestamp = new Date().toLocaleString();
       const newMessage = { text: message, date: timestamp };
       this.generatedMessages = [newMessage, ...this.generatedMessages.slice(0, 4)];
-      localStorage.setItem('generatedMessages', JSON.stringify(this.generatedMessages));
+      this.saveMessages();
       this.snackBar.open('Mensagem gerada com sucesso!', 'Fechar', { duration: 3000 });
     } catch (error) {
       console.error("Erro ao gerar mensagem:", error);
@@ -49,13 +63,17 @@ export class MessageGeneratorComponent implements OnInit {
     } finally {
       this.loading = false;
       this.partnerName = '';
-      this
+      this.additionalInfo = '';
     }
   }
 
   handleClearMessages() {
     this.generatedMessages = [];
     localStorage.removeItem('generatedMessages');
-    this.snackBar.open('Mensagens limpas com sucesso!', 'Fechar', { duration: 3000 });
+    this.snackBar.open('Histórico de mensagens limpo.', 'Fechar', { duration: 3000 });
+  }
+
+  private saveMessages() {
+    localStorage.setItem('generatedMessages', JSON.stringify(this.generatedMessages));
   }
 }
