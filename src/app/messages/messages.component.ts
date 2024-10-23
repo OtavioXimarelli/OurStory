@@ -116,6 +116,9 @@ export class MessagesComponent implements OnInit {
   }
 
   saveEditedMessage() {
+    if (!this.editedMessage?.trim()) {
+      return;
+    }
     if (this.editingMessage) {
       const index = this.generatedMessages.findIndex(m => m.date === this.editingMessage!.date);
       if (index !== -1) {
