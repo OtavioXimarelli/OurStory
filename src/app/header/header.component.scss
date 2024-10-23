@@ -2,26 +2,23 @@
 @import '../../styles/variables';
 
 .header-container {
-  background-color: #fff;
+  background-color: $white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .logo {
+.logo {
     font-family: 'Great Vibes', cursive;
     font-size: 2.5rem;
-    color: $primary-color;
+    color: $secondary-color;
     display: flex;
     align-items: center;
+    text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.2);
+}
 
-    .hearts-container {
-      margin-right: 10px;
-    }
-  }
-
-  .nav-links-container {
+.nav-links-container {
     display: flex;
     gap: 15px;
 

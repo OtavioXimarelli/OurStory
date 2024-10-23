@@ -12,8 +12,21 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Categoria da Mensagem</mat-label>
+          <mat-select [(ngModel)]="messageCategory" name="messageCategory" required>
+            <mat-option value="daily">Apreciação Diária</mat-option>
+            <mat-option value="anniversary">Aniversário</mat-option>
+            <mat-option value="apology">Pedido de Desculpas</mat-option>
+            <mat-option value="romantic">Declaração Romântica</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Conte-nos sobre seu amor</mat-label>
-          <textarea matInput [(ngModel)]="additionalInfo" name="additionalInfo" rows="4" placeholder="Momentos especiais, características únicas..."></textarea>
+          <textarea matInput [(ngModel)]="additionalInfo" name="additionalInfo" rows="4" 
+                    placeholder="Momentos especiais, características únicas..." 
+                    (input)="updateCharCount()" maxlength="500"></textarea>
+          <mat-hint align="end">{{charCount}} / 500</mat-hint>
           <mat-icon matSuffix>favorite_border</mat-icon>
         </mat-form-field>
 
@@ -35,9 +48,32 @@
     <h3 class="generated-message-title">Sua Mensagem Especial</h3>
     <mat-card class="message-card" [@messageAnimation]>
       <mat-card-content>
-        <p>{{ generatedMessages[0].text }}</p>
+        <p *ngIf="!editingMessage">{{ generatedMessages[0].text }}</p>
+        <mat-form-field *ngIf="editingMessage" class="full-width">
+          <mat-label>Editar Mensagem</mat-label>
+          <textarea matInput [(ngModel)]="editingMessage.text" rows="4" placeholder="Editar sua mensagem aqui..."></textarea>
+        </mat-form-field>
         <small>Criado em: {{ generatedMessages[0].date }}</small>
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button (click)="editMessage(generatedMessages[0])" matTooltip="Editar">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="copyToClipboard(generatedMessages[0].text)" matTooltip="Copiar">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+        <button mat-icon-button (click)="shareMessage(generatedMessages[0].text)" matTooltip="Compartilhar">
+          <mat-icon>share</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleFavorite(generatedMessages[0])" matTooltip="Favoritar">
+          <mat-icon>{{ generatedMessages[0].isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+        <div class="rating">
+          <button mat-icon-button *ngFor="let star of [1, 2, 3, 4, 5]" (click)="rateMessage(generatedMessages[0], star)" matTooltip="Avaliar">
+            <mat-icon>{{ generatedMessages[0].rating && generatedMessages[0].rating >= star ? 'star' : 'star_border' }}</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
     </mat-card>
   </div>
 
@@ -47,13 +83,32 @@
       <mat-expansion-panel *ngFor="let msg of generatedMessages.slice(1); let i = index" [@listAnimation]>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Mensagem {{ generatedMessages.length - i - 1 }}
+            {{ msg.category }}
           </mat-panel-title>
           <mat-panel-description>
             {{ msg.date }}
           </mat-panel-description>
         </mat-expansion-panel-header>
         <p>{{ msg.text }}</p>
+        <mat-action-row>
+          <button mat-icon-button (click)="editMessage(msg)" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="copyToClipboard(msg.text)" matTooltip="Copiar">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+          <button mat-icon-button (click)="shareMessage(msg.text)" matTooltip="Compartilhar">
+            <mat-icon>share</mat-icon>
+          </button>
+          <button mat-icon-button (click)="toggleFavorite(msg)" matTooltip="Favoritar">
+            <mat-icon>{{ msg.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+          </button>
+          <div class="rating">
+            <button mat-icon-button *ngFor="let star of [1, 2, 3, 4, 5]" (click)="rateMessage(msg, star)" matTooltip="Avaliar">
+              <mat-icon>{{ msg.rating && msg.rating >= star ? 'star' : 'star_border' }}</mat-icon>
+            </button>
+          </div>
+        </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
