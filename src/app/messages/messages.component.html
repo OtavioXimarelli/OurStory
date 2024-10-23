@@ -1,0 +1,47 @@
+<div class="messages-container">
+  <h2 class="messages-title">Mensagens Mágicas <mat-icon>favorite</mat-icon></h2>
+  <p class="messages-subtitle">Crie mensagens únicas e especiais para momentos inesquecíveis</p>
+  
+  <div class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome do seu amor</mat-label>
+      <input matInput [(ngModel)]="partnerName" required placeholder="Nome do seu amor">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Conte-nos sobre seu amor (momentos especiais, características únicas...)</mat-label>
+      <textarea matInput [(ngModel)]="additionalInfo" rows="4" placeholder="Descreva seu amor aqui"></textarea>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="handleGenerateMessage()" [disabled]="loading">
+        <mat-icon>auto_awesome</mat-icon>
+        {{ loading ? 'Criando Magia...' : 'Gerar Mensagem Mágica' }}
+      </button>
+      <button mat-stroked-button color="warn" (click)="handleClearMessages()">
+        <mat-icon>delete</mat-icon>
+        Limpar Histórico
+      </button>
+    </div>
+  </div>
+
+  <div class="generated-message-container" *ngIf="generatedMessages.length > 0">
+    <h3 class="generated-message-title">Sua Mensagem Especial:</h3>
+    <mat-card class="message-card">
+      <mat-card-content>
+        <p>{{ generatedMessages[0].text }}</p>
+        <small>Criado em: {{ generatedMessages[0].date }}</small>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="message-history" *ngIf="generatedMessages.length > 1">
+    <h3 class="history-title">Suas Mensagens Anteriores</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let msg of generatedMessages.slice(1)">
+        <p>{{ msg.text }}</p>
+        <small>Criado em: {{ msg.date }}</small>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
