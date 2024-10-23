@@ -2,109 +2,160 @@
 
 .messages-container {
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
+  margin: 3rem auto;
+  padding: 2.5rem;
   background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
 }
 
 .messages-title {
-  font-size: 2.5rem;
-  color: $secondary-color;
+  font-size: 3rem;
+  color: $primary-color;
   text-align: center;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
 
-  mat-icon {
+  .heart-icon {
     margin-left: 0.5rem;
-    color: $primary-color;
+    color: $accent-color;
+    font-size: 2.5rem;
+    animation: pulse 1.5s infinite;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
   }
 }
 
-.messages-subtitle {
-  font-size: 1.2rem;
-  color: $text-color;
-  text-align: center;
-  margin-bottom: 2rem;
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
-.input-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.messages-subtitle {
+  font-size: 1.3rem;
+  color: $text-color;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.input-card {
+  margin-bottom: 3rem;
+}
+
+.full-width {
+  width: 100%;
 }
 
 .button-container {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
 
   button {
     flex: 1;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+
+    &:hover:not([disabled]) {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    mat-icon {
+      margin-right: 0.5rem;
+    }
   }
 }
 
+.generate-button {
+  background-color: $primary-color;
+  color: white;
+}
+
+.clear-button {
+  border: 2px solid $accent-color;
+  color: $accent-color;
+}
+
 .generated-message-container, .message-history {
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 .generated-message-title, .history-title {
-  font-size: 1.8rem;
-  color: $secondary-color;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: $primary-color;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
 .message-card {
   background-color: #f9f9f9;
-  border-left: 4px solid $primary-color;
+  border-left: 4px solid $accent-color;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: $text-color;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  small {
+    color: $text-color;
+    opacity: 0.7;
+    font-style: italic;
+  }
+}
+
+mat-expansion-panel {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+
+  mat-expansion-panel-header {
+    padding: 1rem;
+  }
 
   p {
     font-size: 1.1rem;
     color: $text-color;
-    margin-bottom: 0.5rem;
-  }
-
-  small {
-    color: $text-color;
-    opacity: 0.7;
-  }
-}
-
-mat-list-item {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
-
-  p {
-    font-size: 1rem;
-    color: $text-color;
-    margin-bottom: 0.3rem;
-  }
-
-  small {
-    color: $text-color;
-    opacity: 0.7;
+    line-height: 1.5;
+    padding: 1rem;
   }
 }
 
 @media (max-width: 768px) {
   .messages-container {
-    padding: 1rem;
-    margin: 1rem;
+    padding: 1.5rem;
+    margin: 1.5rem;
   }
 
   .messages-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .messages-subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .button-container {
     flex-direction: column;
   }
 }
-
