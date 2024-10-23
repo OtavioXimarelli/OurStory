@@ -64,3 +64,13 @@ a {
     padding: 10px;
   }
 }
+
+.custom-dialog-container .mat-mdc-dialog-container {
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.custom-dialog-container .mat-mdc-dialog-surface {
+  background-color: #fff;
+}

@@ -10,9 +10,6 @@ Mark and remember all the special dates in your relationship.
 ### 2. Heart Messages
 Create and share romantic messages for unique occasions.
 
-### 3. Memory Album
-Upload and organize photos of your precious moments.
-
 ## Technologies Used
 
 - Angular
