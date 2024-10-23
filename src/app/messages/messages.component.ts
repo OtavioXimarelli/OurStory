@@ -75,8 +75,8 @@ export class MessagesComponent implements OnInit {
   }
 
   async handleGenerateMessage() {
-    if (!this.partnerName || !this.messageCategory) {
-      this.snackBar.open('Por favor, preencha todos os campos obrigatórios.', 'Fechar', { duration: 3000 });
+    if (!this.partnerName) {
+      this.snackBar.open('Por favor, preencha o nome do parceiro.', 'Fechar', { duration: 3000 });
       return;
     }
     this.loading = true;
@@ -116,10 +116,7 @@ export class MessagesComponent implements OnInit {
   }
 
   saveEditedMessage() {
-    if (!this.editedMessage?.trim()) {
-      return;
-    }
-    if (this.editingMessage) {
+    if (this.editingMessage && this.editingMessage.text.trim()) {
       const index = this.generatedMessages.findIndex(m => m.date === this.editingMessage!.date);
       if (index !== -1) {
         this.generatedMessages[index] = this.editingMessage;
