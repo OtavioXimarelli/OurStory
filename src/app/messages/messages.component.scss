@@ -4,8 +4,9 @@
   max-width: 800px;
   margin: 3rem auto;
   padding: 2.5rem;
-  background-color: #ffffff;
+  background-color: $white;
   border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(233, 30, 99, 0.1);
 }
 
 .messages-title {
@@ -158,4 +159,23 @@ mat-expansion-panel {
   .button-container {
     flex-direction: column;
   }
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+}
+
+.template-card {
+  margin-bottom: 1rem;
+}
+
+.message-templates {
+  margin-top: 2rem;
+}
+
+.message-templates h3 {
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin-bottom: 1rem;
 }

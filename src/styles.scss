@@ -26,7 +26,7 @@ a {
 
 @mixin btn-styles {
   background-color: $primary-color;
-  color: #fff;
+  color: $white;
   border: none;
   padding: 12px 24px;
   border-radius: 25px;
@@ -39,12 +39,12 @@ a {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(233, 30, 99, 0.2);
 
   &:hover {
     background-color: $secondary-color;
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 8px rgba(233, 30, 99, 0.3);
   }
 }
 
