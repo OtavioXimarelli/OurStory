@@ -18,7 +18,7 @@
         <mat-icon class="feature-icon">{{ feature.icon }}</mat-icon>
         <h3 class="feature-title">{{ feature.title }}</h3>
         <p class="feature-description">{{ feature.description }}</p>
-        <a (click)="openDevelopmentModal()" class="feature-link">Saiba mais</a>
+        <a [routerLink]="feature.link" class="feature-link">Saiba mais</a>
       </mat-card>
     </div>
   </section>

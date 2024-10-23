@@ -6,7 +6,8 @@
   <nav class="nav-links-container">
     <a routerLink="/" class="nav-item">Home</a>
     <a (click)="openDevelopmentModal()" class="nav-item">Calendário</a>
-    <a (click)="openDevelopmentModal()" class="nav-item">Mensagens</a>
+    <a routerLink="/messages" class="nav-item">Mensagens</a>
+    <!--<a (click)="openDevelopmentModal()" class="nav-item">Mensagens</a>-->
     <button class="btn btn-login" (click)="toggleAuth()">
       {{ isAuthenticated ? 'Logout' : 'Login' }}
     </button>

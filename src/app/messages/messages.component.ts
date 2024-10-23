@@ -6,7 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 interface GeneratedMessage {
   text: string;
@@ -24,10 +25,26 @@ interface GeneratedMessage {
     MatIconModule,
     MatSnackBarModule,
     MatCardModule,
-    MatListModule
+    MatExpansionModule
   ],
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  styleUrls: ['./messages.component.scss'],
+  animations: [
+    trigger('messageAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+    trigger('listAnimation', [
+      transition('* <=> *', [
+        query(':enter',
+          [style({ opacity: 0, transform: 'translateY(-15px)' }), stagger('50ms', animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })))],
+          { optional: true }
+        )
+      ])
+    ])
+  ]
 })
 export class MessagesComponent implements OnInit {
   partnerName: string = '';

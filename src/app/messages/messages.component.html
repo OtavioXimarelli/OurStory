@@ -1,33 +1,39 @@
-<div class="messages-container">
-  <h2 class="messages-title">Mensagens Mágicas <mat-icon>favorite</mat-icon></h2>
+<div class="messages-container mat-elevation-z4">
+  <h2 class="messages-title">Mensagens Mágicas <span class="heart-icon"><mat-icon>favorite</mat-icon></span></h2>
   <p class="messages-subtitle">Crie mensagens únicas e especiais para momentos inesquecíveis</p>
   
-  <div class="input-section">
-    <mat-form-field appearance="outline">
-      <mat-label>Nome do seu amor</mat-label>
-      <input matInput [(ngModel)]="partnerName" required placeholder="Nome do seu amor">
-    </mat-form-field>
+  <mat-card class="input-card">
+    <mat-card-content>
+      <form (ngSubmit)="handleGenerateMessage()" #messageForm="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome do seu amor</mat-label>
+          <input matInput [(ngModel)]="partnerName" name="partnerName" required placeholder="Ex: Maria">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Conte-nos sobre seu amor (momentos especiais, características únicas...)</mat-label>
-      <textarea matInput [(ngModel)]="additionalInfo" rows="4" placeholder="Descreva seu amor aqui"></textarea>
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Conte-nos sobre seu amor</mat-label>
+          <textarea matInput [(ngModel)]="additionalInfo" name="additionalInfo" rows="4" placeholder="Momentos especiais, características únicas..."></textarea>
+          <mat-icon matSuffix>favorite_border</mat-icon>
+        </mat-form-field>
 
-    <div class="button-container">
-      <button mat-raised-button color="primary" (click)="handleGenerateMessage()" [disabled]="loading">
-        <mat-icon>auto_awesome</mat-icon>
-        {{ loading ? 'Criando Magia...' : 'Gerar Mensagem Mágica' }}
-      </button>
-      <button mat-stroked-button color="warn" (click)="handleClearMessages()">
-        <mat-icon>delete</mat-icon>
-        Limpar Histórico
-      </button>
-    </div>
-  </div>
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" [disabled]="loading || !messageForm.form.valid" class="generate-button">
+            <mat-icon>auto_awesome</mat-icon>
+            <span>{{ loading ? 'Criando Magia...' : 'Gerar Mensagem Mágica' }}</span>
+          </button>
+          <button mat-stroked-button color="warn" type="button" (click)="handleClearMessages()" class="clear-button">
+            <mat-icon>delete</mat-icon>
+            <span>Limpar Histórico</span>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
   <div class="generated-message-container" *ngIf="generatedMessages.length > 0">
-    <h3 class="generated-message-title">Sua Mensagem Especial:</h3>
-    <mat-card class="message-card">
+    <h3 class="generated-message-title">Sua Mensagem Especial</h3>
+    <mat-card class="message-card" [@messageAnimation]>
       <mat-card-content>
         <p>{{ generatedMessages[0].text }}</p>
         <small>Criado em: {{ generatedMessages[0].date }}</small>
@@ -37,11 +43,18 @@
 
   <div class="message-history" *ngIf="generatedMessages.length > 1">
     <h3 class="history-title">Suas Mensagens Anteriores</h3>
-    <mat-list>
-      <mat-list-item *ngFor="let msg of generatedMessages.slice(1)">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let msg of generatedMessages.slice(1); let i = index" [@listAnimation]>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Mensagem {{ generatedMessages.length - i - 1 }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ msg.date }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
         <p>{{ msg.text }}</p>
-        <small>Criado em: {{ msg.date }}</small>
-      </mat-list-item>
-    </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>
