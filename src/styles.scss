@@ -5,12 +5,109 @@
 @import './variables';
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+// Ajustes globais para dispositivos móveis
+@media (max-width: 768px) {
+  .mat-mdc-form-field {
+    font-size: 14px;
+  }
+
+  .mat-mdc-card {
+    padding: 12px !important;
+  }
+
+  .mat-mdc-card-title {
+    font-size: 18px !important;
+  }
+
+  .mat-mdc-card-content {
+    font-size: 14px !important;
+  }
+
+  .mat-expansion-panel-header {
+    padding: 12px !important;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 12px 12px !important;
+  }
+
+  button.mat-icon-button {
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+
+    .mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+}
+
+// Melhorias de acessibilidade para toque
+@media (hover: none) {
+  .mat-button,
+  .mat-icon-button,
+  .mat-stroked-button,
+  .mat-raised-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+// Ajustes de fonte responsiva
+html {
+  font-size: 16px;
+  
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+// Melhorias de performance
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+// Ajustes de scroll
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  height: 100%;
+  
+  @supports (-webkit-touch-callout: none) {
+    // Fallback para iOS
+    height: -webkit-fill-available;
+  }
+}
+
+// Melhorias para rolagem suave em dispositivos móveis
+* {
+  scroll-margin-top: 70px;
+  scroll-padding-top: 70px;
+}
+
+// Ajustes para elementos com scroll interno
+.scrollable-content {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.mat-mdc-dialog-container {
+  @media (max-width: 768px) {
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+body {
+  padding-top: 60px;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: $text-color;
   background-color: $background-color;
-  margin: 0;
-  padding: 0;
   line-height: 1.6;
 }
 
@@ -69,8 +166,41 @@ a {
   padding: 0;
   border-radius: 8px;
   overflow: hidden;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .custom-dialog-container .mat-mdc-dialog-surface {
   background-color: #fff;
+}
+
+.mat-mdc-dialog-container {
+  @media (max-width: 768px) {
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+.mat-mdc-card {
+  @media (max-width: 768px) {
+    border-radius: 12px !important;
+  }
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+a, button {
+  touch-action: manipulation;
+}
+
+// Prevenir scroll quando o menu está aberto
+body.menu-open {
+  overflow: hidden;
 }
