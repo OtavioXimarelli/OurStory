@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,12 +14,31 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 })
 export class HeaderComponent {
   isAuthenticated = false; // Simulação de autenticação
+  menuActive = false; // Propriedade adicionada para controlar o menu
 
   constructor(private dialog: MatDialog) {}
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (window.innerWidth > 768 && this.menuActive) {
+      this.closeMenu();
+    }
+  }
+
+  toggleMenu() {
+    this.menuActive = !this.menuActive; // Alterna o estado do menu
+    document.body.style.overflow = this.menuActive ? 'hidden' : '';
+  }
+
+  closeMenu() {
+    this.menuActive = false;
+    document.body.style.overflow = '';
+  }
+
   openDevelopmentModal() {
     this.dialog.open(DevelopmentModalComponent, {
-      width: '400px',
+      width: '90%', // Ajuste para telas menores
+      maxWidth: '400px',
       panelClass: 'custom-dialog-container'
     });
   }

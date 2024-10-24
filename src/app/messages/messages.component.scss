@@ -1,12 +1,13 @@
 @import '../../styles/variables';
 
 .messages-container {
+  padding: 20px;
   max-width: 800px;
-  margin: 3rem auto;
-  padding: 2.5rem;
-  background-color: $white;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(233, 30, 99, 0.1);
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
 .messages-title {
@@ -52,6 +53,7 @@
 
 .full-width {
   width: 100%;
+  margin-bottom: 16px;
 }
 
 .button-container {
@@ -123,6 +125,29 @@
     opacity: 0.7;
     font-style: italic;
   }
+
+  mat-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    padding: 8px;
+
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
+
+    .rating {
+      display: flex;
+      gap: 4px;
+      
+      @media (max-width: 768px) {
+        width: 100%;
+        justify-content: center;
+        margin-top: 8px;
+      }
+    }
+  }
 }
 
 mat-expansion-panel {
@@ -178,4 +203,28 @@ mat-expansion-panel {
   font-size: 1.5rem;
   color: $primary-color;
   margin-bottom: 1rem;
+}
+
+.form-container {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 15px;
+    border-radius: 10px;
+  }
+}
+
+.message-history {
+  margin-top: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
+
+  mat-expansion-panel {
+    margin-bottom: 10px;
+  }
 }

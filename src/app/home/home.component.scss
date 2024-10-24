@@ -5,6 +5,16 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
+  color: $text-color;
+  background-color: $background-color;
+
+  a {
+    color: $link-color;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
 }
 
 .home-container {
@@ -221,3 +231,4 @@ body {
     }
   }
 }
+

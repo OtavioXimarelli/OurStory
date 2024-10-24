@@ -1,15 +1,33 @@
 <header class="header-container">
-  <a routerLink="/" class="logo">
+  <a routerLink="/" class="logo" (click)="closeMenu()">
     <span class="hearts-container">❤️</span>
     Our Love Story    
   </a>
-  <nav class="nav-links-container">
-    <a routerLink="/" class="nav-item">Home</a>
-    <a (click)="openDevelopmentModal()" class="nav-item">Calendário</a>
-    <a routerLink="/messages" class="nav-item">Mensagens</a>
-    <!--<a (click)="openDevelopmentModal()" class="nav-item">Mensagens</a>-->
-    <button class="btn btn-login" (click)="toggleAuth()">
+  
+  <button 
+    class="hamburger" 
+    (click)="toggleMenu()" 
+    aria-label="Menu de navegação"
+    [attr.aria-expanded]="menuActive">
+    <mat-icon>{{ menuActive ? 'close' : 'menu' }}</mat-icon>
+  </button>
+
+  <nav 
+    class="nav-links-container" 
+    [class.active]="menuActive"
+    role="navigation"
+    aria-label="Menu principal">
+    <a routerLink="/" class="nav-item" (click)="closeMenu()">Home</a>
+    <a (click)="openDevelopmentModal(); closeMenu()" class="nav-item">Calendário</a>
+    <a routerLink="/messages" class="nav-item" (click)="closeMenu()">Mensagens</a>
+    <button class="btn btn-login" (click)="toggleAuth(); closeMenu()">
       {{ isAuthenticated ? 'Logout' : 'Login' }}
     </button>
   </nav>
+
+  <div 
+    class="overlay" 
+    [class.active]="menuActive" 
+    (click)="closeMenu()">
+  </div>
 </header>
