@@ -132,3 +132,13 @@
   display: block;
   height: 60px;
 }
+
+.menu-active {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .menu-active {
+    overflow: initial;
+  }
+}
