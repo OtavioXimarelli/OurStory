@@ -18,21 +18,14 @@ export class HeaderComponent {
 
   constructor(private dialog: MatDialog) {}
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    if (window.innerWidth > 768 && this.menuActive) {
-      this.closeMenu();
-    }
-  }
 
+ 
   toggleMenu() {
-    this.menuActive = !this.menuActive; // Alterna o estado do menu
-    document.body.style.overflow = this.menuActive ? 'hidden' : '';
+    this.menuActive = !this.menuActive;
   }
 
   closeMenu() {
     this.menuActive = false;
-    document.body.style.overflow = '';
   }
 
   openDevelopmentModal() {
